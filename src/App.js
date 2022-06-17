@@ -29,7 +29,7 @@ function App() {
       <Container>
         <SearchForm handleOnSubmit={handleOnSubmit} />
         <div className="mt-4 d-flex justify-content-center">
-          <div className="">
+          <div>
             {movie.imdbID && <CustomCard movie={movie} />}
             {showError && <Alert variant="danger">{showError}</Alert>}
           </div>
