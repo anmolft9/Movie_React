@@ -1,8 +1,9 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-export const CustomCard = ({ movie = {} }) => {
+export const CustomCard = ({ movie = {}, func, inSearchForm }) => {
   const { Title, Poster, imdbRating } = movie;
+
   // console.log(movie);
   // const display = (m = movie) => {
   //   m.map((results) => {
@@ -16,10 +17,32 @@ export const CustomCard = ({ movie = {} }) => {
       <Card.Body>
         <Card.Title>{Title}</Card.Title>
         <Card.Title>Rating:{imdbRating}</Card.Title>
-        <div className="d-flex justify-content-between flex-wrap">
-          <Button variant="primary">Happy</Button>
-          <Button variant="primary">Sad</Button>
-        </div>
+        {inSearchForm ? (
+          <div className="d-flex justify-content-between flex-wrap">
+            <Button
+              variant="primary"
+              onClick={() => func({ ...movie, mood: "happy" })}
+            >
+              Happy
+            </Button>
+            <Button
+              variant="primary"
+              onClick={() => func({ ...movie, mood: "sad" })}
+            >
+              Sad
+            </Button>
+          </div>
+        ) : (
+          <div className="d-grid gap-2">
+            <Button
+              onClick={() => func(movie.imdbID)}
+              variant="danger"
+              size="lg"
+            >
+              Delete
+            </Button>
+          </div>
+        )}
       </Card.Body>
     </Card>
   );
