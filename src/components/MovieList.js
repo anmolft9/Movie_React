@@ -3,9 +3,11 @@ import { Row, Col } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { CustomCard } from "./CustomCard";
+import { CustomList } from "./CustomList";
 
 export const MovieList = ({ movieList, handleRemoveItem }) => {
   const [displayList, setDisplayList] = useState([]);
+  const [view, setView] = useState("grid");
   useEffect(() => {
     setDisplayList(movieList);
   }, [movieList]);
@@ -47,17 +49,25 @@ export const MovieList = ({ movieList, handleRemoveItem }) => {
         </Col>
         <Col className="text-end">
           <ButtonGroup aria-label="Basic example">
-            <Button variant="secondary">Grid</Button>
-            <Button variant="secondary">List</Button>
+            <Button onClick={() => setView("grid")} variant="secondary">
+              Grid
+            </Button>
+            <Button onClick={() => setView("list")} variant="secondary">
+              List
+            </Button>
           </ButtonGroup>
         </Col>
       </Row>
 
       <Row className="mt-5  ">
         <Col className="d-flex justify-content-center flex-wrap ">
-          {displayList.map((item, index) => (
-            <CustomCard key={index} movie={item} func={handleRemoveItem} />
-          ))}
+          {displayList.map((item, index) =>
+            view === "grid" ? (
+              <CustomCard key={index} movie={item} func={handleRemoveItem} />
+            ) : (
+              <CustomList key={index} movie={item} func={handleRemoveItem} />
+            )
+          )}
         </Col>
       </Row>
     </div>
