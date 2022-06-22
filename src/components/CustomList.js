@@ -1,22 +1,21 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
-export const CustomCard = ({ movie = {}, func, inSearchForm }) => {
-  const { Title, Poster, imdbRating } = movie;
-
-  // console.log(movie);
-  // const display = (m = movie) => {
-  //   m.map((results) => {
-  //     console.log(results.data.year);
-  //   });
-  // };
+export const CustomList = ({ movie = {}, func, inSearchForm }) => {
+  const { Title, Poster, imdbRating, Plot } = movie;
 
   return (
-    <Card style={{ width: "18rem" }} className="mt-3">
-      <Card.Img variant="top" src={Poster} className="h-100" />
+    <Card
+      style={{ width: "100%" }}
+      className="mt-3 d-flex flex-row justify-content-between"
+    >
+      <div style={{ width: "300px" }}>
+        <Card.Img variant="top" src={Poster} className="h-100" />
+      </div>
       <Card.Body>
         <Card.Title>{Title}</Card.Title>
         <Card.Title>Rating:{imdbRating}</Card.Title>
+        <div>{Plot}</div>
         {inSearchForm ? (
           <div className="d-flex justify-content-between flex-wrap">
             <Button
