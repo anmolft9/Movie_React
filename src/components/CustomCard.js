@@ -13,6 +13,7 @@ export const CustomCard = ({ movie = {}, func, inSearchForm }) => {
 
   return (
     <Card style={{ width: "18rem" }} className="mt-3">
+      {/* h-100 to make the image height same for all the cards */}
       <Card.Img variant="top" src={Poster} className="h-100" />
       <Card.Body>
         <Card.Title>{Title}</Card.Title>
